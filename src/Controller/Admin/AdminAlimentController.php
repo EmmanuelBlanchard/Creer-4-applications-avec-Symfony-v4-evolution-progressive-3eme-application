@@ -37,8 +37,10 @@ class AdminAlimentController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            $modification = $aliment->getId() !== null;
             $entityManager->persist($aliment);
             $entityManager->flush();
+            $this->addFlash("success", ($modification) ? "La modification a été effectuée" : "L'ajout a été effectué");
             return $this->redirectToRoute("admin_aliments");
         }
 
@@ -57,6 +59,7 @@ class AdminAlimentController extends AbstractController
         if($this->isCsrfTokenValid("SUP" . $aliment->getId(), $request->get('_token'))) {
             $entityManager->remove($aliment);
             $entityManager->flush();
+            $this->addFlash("success","La suppression a été effectuée");
             return $this->redirectToRoute("admin_aliments");
         }
     }
