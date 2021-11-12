@@ -23,7 +23,7 @@
             {% if aliment.image %}
                 <img src="{{asset('images/' ~ aliment.image)}}" style="width:25%" alt="{{aliment.nom}}">
             {% endif %}
-            <div>{{ form_row(form.image) }}</div>
+            <div>{{ form_row(form.imageFile) }}</div>
             <div>{{ form_row(form.nom, {"attr" : {'class':'text-danger'},"label":"Nom de l'aliment"}) }}</div>
         </div>
 
