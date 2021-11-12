@@ -25,17 +25,13 @@
             {% endif %}
             <div>{{ form_row(form.imageFile) }}</div>
             <div>{{ form_row(form.nom, {"attr" : {'class':'text-danger'},"label":"Nom de l'aliment"}) }}</div>
+            <div>{{ form_row(form.type) }}</div>
         </div>
 
         <div class="col-6">
-            <div>{{ form_row(form.prix) }}</div>
-            <div>{{ form_row(form.calorie) }}</div>
-            <div>{{ form_row(form.proteine) }}</div>
-            <div>{{ form_row(form.glucide) }}</div>
-            <div>{{ form_row(form.lipide) }}</div>
+            {{ form_widget(form) }}
         </div>
     </div>
-    {{form_widget(form)}}
     <input type="submit" class="btn btn-primary" value="Enregister">
 {{form_end(form)}}
 
