@@ -6,6 +6,13 @@
     Connexion
 {% endblock %}
 {% block body %}
+
+{% if error %}
+    <div class="alert alert-danger">
+       {{ error.messageKey | trans(error.messagedata,'security') }}
+    </div>
+{% endif %}
+
 <form action="{{path('connexion')}}" method="POST">
     <div class="form-group">
         <label>Nom d'utilisateur : </label>

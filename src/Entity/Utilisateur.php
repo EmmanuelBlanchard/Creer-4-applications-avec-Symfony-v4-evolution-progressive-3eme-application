@@ -41,6 +41,11 @@ class Utilisateur implements UserInterface
      * @Assert\EqualTo(propertyPath = "password", message = "Les mots de passes ne sont pas équivalents")
      */
     private $verificationPassword;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
     
     public function getId(): ?int
     {
@@ -84,24 +89,6 @@ class Utilisateur implements UserInterface
     }
 
     /**
-     * Returns the roles granted to the user.
-     *
-     *     public function getRoles()
-     *     {
-     *         return ['ROLE_USER'];
-     *     }
-     *
-     * Alternatively, the roles might be stored in a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return array<Role|string> The user roles
-     */
-    public function getRoles() {
-        return ['ROLE_USER'];
-    }
-
-    /**
      * Returns the salt that was originally used to encode the password.
      *
      * This can return null if the password was not encoded using a salt.
@@ -121,4 +108,21 @@ class Utilisateur implements UserInterface
     public function eraseCredentials(){
 
     }
+
+    public function getRoles()
+    {
+        return [$this->roles];
+    }
+
+    public function setRoles(?string $roles): self
+    {
+        if($roles === null) {
+            $this->roles = "ROLE_USER";
+        } else {
+            $this->roles = $roles;
+        }
+
+        return $this;
+    }
+
 }
